@@ -16,11 +16,18 @@ Type 'help' to get help`;
 const commands = {
   help: {
     description: 'Show command list with description',
-    call: (terminal) => {
+    hidden: false,
+    call: (terminal, args) => {
       const {
         commands,
         println,
       } = terminal;
+
+      if (args[0] === 'help') {
+        println(<p>Do you really need help with 'help'? .-.</p>);
+        return;
+      }
+
 
       println(
         <>
@@ -28,14 +35,17 @@ const commands = {
           <p>Command list:</p>
           <div className="helpTable">
             {
-              Object.keys(commands).map(command => (
-                <React.Fragment key={command}>
-                  <div>{command}</div>
-                  <div>{commands[command].description}</div>
-                </React.Fragment>
-              ))
+              Object.keys(commands)
+                .filter(command => !commands[command].hidden)
+                .map(command => (
+                  <React.Fragment key={command}>
+                    <div>{command}</div>
+                    <div>{commands[command].description}</div>
+                  </React.Fragment>
+                ))
             }
           </div>
+          <p>You can use "command help" for help</p>
         </>
       );
     },
