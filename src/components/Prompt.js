@@ -11,6 +11,8 @@ class Prompt extends Component {
     this.input = React.createRef();
     this.state = {
       text: '',
+      history: [],
+      historyIndex: 1,
     };
   }
 
@@ -36,13 +38,60 @@ class Prompt extends Component {
       return;
     }
 
+    if (key === 38) {
+      event.preventDefault();
+
+      if (this.state.historyIndex - 1 < 0) {
+        return;
+      }
+
+      this.setState((state) => ({
+        text: state.history[state.historyIndex - 1],
+        historyIndex: state.historyIndex - 1,
+      }));
+      return;
+    }
+
+    if (key === 40) {
+      event.preventDefault();
+
+      if (this.state.historyIndex + 1 >= this.state.history.length) {
+        this.setState((state) => ({
+          text: '',
+          historyIndex: state.history.length,
+        }));
+        return;
+      }
+
+      this.setState((state) => ({
+        text: state.history[state.historyIndex + 1],
+        historyIndex: state.historyIndex + 1,
+      }));
+      return;
+    }
+
     if (key === 13) {
       event.preventDefault();
       this.props.onSubmit(this.state.text);
 
-      this.setState({
+      if (this.state.text !== '') {
+        this.setState((state) => {
+          const history = [
+            ...state.history,
+            this.state.text,
+          ];
+
+          return {
+            ...state,
+            history,
+            historyIndex: history.length,
+          };
+        });
+      }
+
+      this.setState(() => ({
         text: '',
-      });
+      }));
     }
   }
 
