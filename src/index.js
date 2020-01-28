@@ -4,22 +4,25 @@ import ReactDOM from 'react-dom';
 import Terminal from './components/Terminal';
 import './index.css';
 
-const header = `
-                                           .__           .___
+const header = `                                           .__           .___
   ____   _____ _____    ____  __ __   ____ |  |        __| _/_______  __
-_/ __ \\ /     \\__  \\  /    \\|  |  \\_/ __ \\|  |       / __ |/ __ \\  \\/ /
+_/ __ \\ /      \\__  \\  /    \\|  |  \\_/ __ \\|  |       / __ |/ __ \\  \\/ /
 \\  ___/|  Y Y  \\/ __ \\|   |  \\  |  /\\  ___/|  |__    / /_/ \\  ___/\\   /
  \\___  >__|_|  (____  /___|  /____/  \\___  >____/ /\\ \\____ |\\___  >\\_/
      \\/      \\/     \\/     \\/            \\/       \\/      \\/    \\/
-`;
+
+Type 'help' to get help`;
 
 const commands = {
   help: {
     description: 'Show command list with description',
     call: (terminal) => {
-      const { commands } = terminal;
+      const {
+        commands,
+        println,
+      } = terminal;
 
-      return (
+      println(
         <>
           <p>Emanuel terminal</p><br />
           <p>Command list:</p>
