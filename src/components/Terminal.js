@@ -26,25 +26,38 @@ class Terminal extends Component {
       </>
     );
 
+    this.setState((state) => ({
+      messages: [
+        ...state.messages,
+        message,
+      ],
+    }));
+
     const terminal = {
+      terminal: this,
       commands: this.props.commands,
+      clear: () => this.clear(),
+      println: (message) => this.println(message),
     };
 
-    const value = text === '' ? null : processor(terminal, text);
+    if (text !== '') {
+      processor(terminal, text)
+    }
+  }
 
-    this.setState({
+  println(message) {
+    this.setState((state) => ({
       messages: [
-        ...this.state.messages,
+        ...state.messages,
         message,
-        value,
       ],
-    });
+    }));
   }
 
   clear() {
-    this.setState({
+    this.setState(() => ({
       messages: [],
-    });
+    }));
   }
 
   render() {
