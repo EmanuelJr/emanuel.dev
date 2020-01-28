@@ -19,6 +19,10 @@
   flex-grow: 1;
 }
 
+.helpTable div:first-child {
+  padding-left: 2rem;
+}
+
 .helpTable div:last-child {
   flex-grow: 8;
 }
