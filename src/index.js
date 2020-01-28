@@ -1,12 +1,42 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+import Terminal from './components/Terminal';
 import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const header = `
+                                           .__           .___
+  ____   _____ _____    ____  __ __   ____ |  |        __| _/_______  __
+_/ __ \\ /     \\__  \\  /    \\|  |  \\_/ __ \\|  |       / __ |/ __ \\  \\/ /
+\\  ___/|  Y Y  \\/ __ \\|   |  \\  |  /\\  ___/|  |__    / /_/ \\  ___/\\   /
+ \\___  >__|_|  (____  /___|  /____/  \\___  >____/ /\\ \\____ |\\___  >\\_/
+     \\/      \\/     \\/     \\/            \\/       \\/      \\/    \\/
+`;
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+const commands = {
+  help: {
+    description: 'Show command list with description',
+    call: (terminal) => {
+      const { commands } = terminal;
+
+      return (
+        <>
+          <p>Emanuel terminal</p><br />
+          <p>Command list:</p>
+          <div className="helpTable">
+            {
+              Object.keys(commands).map(command => (
+                <React.Fragment key={command}>
+                  <div>{command}</div>
+                  <div>{commands[command].description}</div>
+                </React.Fragment>
+              ))
+            }
+          </div>
+        </>
+      );
+    },
+  },
+};
+
+ReactDOM.render(<Terminal messages={header.split('\n')} commands={commands} />, document.getElementById('root'));

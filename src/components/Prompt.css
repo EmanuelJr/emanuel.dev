@@ -1,0 +1,14 @@
+.prompt-field {
+  display: flex;
+}
+
+.prompt-input {
+  background: transparent;
+  color: #bbb;
+  border: none;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  font-size: 1rem;
+  word-break: break-word;
+}

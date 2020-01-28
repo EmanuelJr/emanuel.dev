@@ -1,0 +1,24 @@
+.terminal {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  display: flex;
+  flex-flow: column;
+  background: #000;
+  color: #bbb;
+  font-family: monospace;
+  white-space: pre;
+  font-size: 1rem;
+}
+
+.helpTable {
+  display: flex;
+}
+
+.helpTable div {
+  flex-grow: 1;
+}
+
+.helpTable div:last-child {
+  flex-grow: 8;
+}
