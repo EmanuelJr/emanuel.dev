@@ -24,7 +24,7 @@ const commands = {
       } = terminal;
 
       if (args[0] === 'help') {
-        println(<p>Do you really need help with 'help'? .-.</p>);
+        println(<p>Do you really need help with 'help'?</p>);
         return;
       }
 
@@ -38,16 +38,23 @@ const commands = {
               Object.keys(commands)
                 .filter(command => !commands[command].hidden)
                 .map(command => (
-                  <React.Fragment key={command}>
+                  <div className="helpRow" key={command}>
                     <div>{command}</div>
                     <div>{commands[command].description}</div>
-                  </React.Fragment>
+                  </div>
                 ))
             }
           </div>
           <p>You can use "command help" for help</p>
         </>
       );
+    },
+  },
+  about: {
+    description: 'All about me',
+    hidden: false,
+    call: (terminal, args) => {
+
     },
   },
 };

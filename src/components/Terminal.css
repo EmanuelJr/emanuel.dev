@@ -11,18 +11,19 @@
   font-size: 1rem;
 }
 
-.helpTable {
+.helpRow {
   display: flex;
 }
 
-.helpTable div {
+.helpRow div {
   flex-grow: 1;
+  flex-basis: 0;
 }
 
-.helpTable div:first-child {
-  padding-left: 2rem;
+.helpRow div:first-child {
+  padding-left: 5rem;
 }
 
-.helpTable div:last-child {
-  flex-grow: 8;
+.helpRow div:last-child {
+  flex-grow: 9;
 }
