@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import MessageList from './MessageList';
 import Prompt from './Prompt';
 import PromptPrefix from './PromptPrefix';
-import processor from '../processor';
+import processor from '../utils/processor';
 import './Terminal.css';
 
 class Terminal extends Component {
