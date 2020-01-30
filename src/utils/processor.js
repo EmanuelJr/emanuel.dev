@@ -9,7 +9,7 @@ const getArgs = (text) => {
     values.push(find);
     match = parseArgs.exec(text);
   }
-  parseArgs.lastIndex = -1;
+  parseArgs.lastIndex = 0;
 
   return values;
 };
