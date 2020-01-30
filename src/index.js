@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Terminal from './components/Terminal';
+import * as commands from './commands';
 import './index.css';
 
 const header = `                                           .__           .___
@@ -12,51 +13,5 @@ _/ __ \\ /      \\__  \\  /    \\|  |  \\_/ __ \\|  |       / __ |/ __ \\  \\/ /
      \\/      \\/     \\/     \\/            \\/       \\/      \\/    \\/
 
 Type 'help' to get help`;
-
-const commands = {
-  help: {
-    description: 'Show command list with description',
-    hidden: false,
-    call: (terminal, args) => {
-      const {
-        commands,
-        println,
-      } = terminal;
-
-      if (args[0] === 'help') {
-        println(<p>Do you really need help with 'help'?</p>);
-        return;
-      }
-
-
-      println(
-        <>
-          <p>Emanuel terminal</p><br />
-          <p>Command list:</p>
-          <div className="helpTable">
-            {
-              Object.keys(commands)
-                .filter(command => !commands[command].hidden)
-                .map(command => (
-                  <div className="helpRow" key={command}>
-                    <div>{command}</div>
-                    <div>{commands[command].description}</div>
-                  </div>
-                ))
-            }
-          </div>
-          <p>You can use "command help" for help</p>
-        </>
-      );
-    },
-  },
-  about: {
-    description: 'All about me',
-    hidden: false,
-    call: (terminal, args) => {
-
-    },
-  },
-};
 
 ReactDOM.render(<Terminal messages={header.split('\n')} commands={commands} />, document.getElementById('root'));
