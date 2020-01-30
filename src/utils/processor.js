@@ -1,15 +1,31 @@
-function processor(terminal, text) {
-  const textSplited = text.split(' ');
-  const commandName = textSplited[0];
+const parseArgs = /('.*?')|"(.*?)"|(\S+)/g;
+
+const getArgs = (text) => {
+  const values = [];
+
+  let match = parseArgs.exec(text);
+  while (match !== null) {
+    const find = match.reverse().find(v => !!v);
+    values.push(find);
+    match = parseArgs.exec(text);
+  }
+  parseArgs.lastIndex = -1;
+
+  return values;
+};
+
+const processor = (terminal, text) => {
+  const args = getArgs(text);
+  const commandName = args.shift();
 
   const command = terminal.commands[commandName];
 
   if (!command) {
     terminal.println(`command not found: ${commandName}`);
-    return;
+    return null;
   }
 
-  command.call(terminal, textSplited.slice(1));
-}
+  return command.call(terminal, args);
+};
 
 export default processor;
