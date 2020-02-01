@@ -1,0 +1,16 @@
+.helpRow {
+  display: flex;
+}
+
+.helpRow div {
+  flex-grow: 1;
+  flex-basis: 0;
+}
+
+.helpRow div:first-child {
+  padding-left: 5rem;
+}
+
+.helpRow div:last-child {
+  flex-grow: 9;
+}
