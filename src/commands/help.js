@@ -1,6 +1,6 @@
 import React from 'react';
 
-import generateHelp from '../utils/helpList';
+import HelpList from '../components/HelpList';
 
 const help = {
   description: 'Show command list with description',
@@ -16,11 +16,18 @@ const help = {
       return;
     }
 
+    const list = Object.keys(commands)
+      .filter(name => !commands[name].hidden)
+      .map(name => ({
+        name: name,
+        description: commands[name].description,
+       }));
+
     println(
       <>
         <p>Emanuel terminal</p><br />
         <p>Command list:</p>
-        {generateHelp(commands)}
+        <HelpList list={list} />
         <p>You can use "command help" for help</p>
       </>
     );
