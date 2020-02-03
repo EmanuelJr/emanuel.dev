@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import PromptPrefix from './PromptPrefix';
 import './Prompt.css';
 
 class Prompt extends Component {
@@ -98,7 +97,7 @@ class Prompt extends Component {
   render() {
     return (
       <div className="prompt-field">
-        <PromptPrefix prefix={this.props.prefix} />
+        {this.props.prefix}
         <textarea
           ref={this.input}
           autoFocus

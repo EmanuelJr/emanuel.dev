@@ -21,7 +21,7 @@ class Terminal extends Component {
 
     const message = (
       <>
-        <PromptPrefix prefix={this.props.promptPrefix} />
+        {this.props.promptPrefix}
         <span>{text}</span>
       </>
     );
@@ -74,6 +74,8 @@ class Terminal extends Component {
   }
 }
 
+const terminalPrefix = <PromptPrefix prefix="$" />;
+
 Terminal.propTypes = {
   commands: PropTypes.object,
   messages: PropTypes.arrayOf(PropTypes.node),
@@ -83,7 +85,7 @@ Terminal.propTypes = {
 Terminal.defaultProps = {
   commands: {},
   messages: [],
-  promptPrefix: '$',
+  promptPrefix: terminalPrefix,
 };
 
 export default Terminal;
