@@ -6,7 +6,7 @@ import './Message.css';
 function Message({ children }) {
   return (
     <div className="message">
-      {typeof children === 'string' ? <span>{children}</span> : children}
+      {(typeof children === 'string') ? <span>{children}</span> : children}
     </div>
   );
 }
@@ -15,4 +15,4 @@ Message.propTypes = {
   children: PropTypes.node,
 };
 
-export default Message;
+export default React.memo(Message);
