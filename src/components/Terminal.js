@@ -1,11 +1,24 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import styled from 'styled-components';
 
 import MessageList from './MessageList';
 import Prompt from './Prompt';
 import PromptPrefix from './PromptPrefix';
 import processor from '../utils/processor';
-import './Terminal.css';
+
+const TerminalContent = styled.div`
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  display: flex;
+  flex-flow: column;
+  background: #000;
+  color: #bbb;
+  font-family: monospace;
+  white-space: pre;
+  font-size: 1rem;
+`;
 
 class Terminal extends Component {
   constructor(props) {
@@ -62,14 +75,14 @@ class Terminal extends Component {
 
   render() {
     return (
-      <div className="terminal">
+      <TerminalContent>
         <MessageList messages={this.state.messages} />
         <Prompt
           prefix={this.props.promptPrefix}
           onSubmit={text => this.onSubmit(text)}
           onClean={_ => this.clear()}
         />
-      </div>
+      </TerminalContent>
     );
   }
 }

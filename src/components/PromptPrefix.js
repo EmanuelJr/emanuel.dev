@@ -1,11 +1,14 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import styled from 'styled-components';
 
-import './PromptPrefix.css';
+const Prefix = styled.span`
+  margin-right: 0.5rem;
+`;
 
 function PromptPrefix({ prefix }) {
   return (
-    <span className="prompt-prefix">{prefix}</span>
+    <Prefix>{prefix}</Prefix>
   );
 }
 

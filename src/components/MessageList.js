@@ -1,14 +1,20 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import styled from 'styled-components';
 
 import Message from './Message';
-import './MessageList.css';
+
+const ListWrapper = styled.div`
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+`;
 
 function MessageList({ messages }) {
   return (
-    <div className="messageList">
+    <ListWrapper>
       {messages.map((message, index) => <Message key={index}>{message}</Message>)}
-    </div>
+    </ListWrapper>
   );
 }
 

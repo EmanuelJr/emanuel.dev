@@ -1,13 +1,17 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import styled from 'styled-components';
 
-import './Message.css';
+const MessageWrapper = styled.div`
+  width: 100%;
+  word-break: break-all;
+`;
 
 function Message({ children }) {
   return (
-    <div className="message">
+    <MessageWrapper>
       {(typeof children === 'string') ? <span>{children}</span> : children}
-    </div>
+    </MessageWrapper>
   );
 }
 

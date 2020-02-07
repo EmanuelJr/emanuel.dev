@@ -1,7 +1,21 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import styled from 'styled-components';
 
-import './Prompt.css';
+const PromptField = styled.div`
+  display: flex;
+`;
+
+const PromptInput = styled.textarea`
+  background: transparent;
+  color: #bbb;
+  border: none;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  font-size: 1rem;
+  word-break: break-word;
+`;
 
 class Prompt extends Component {
   constructor(props) {
@@ -96,18 +110,17 @@ class Prompt extends Component {
 
   render() {
     return (
-      <div className="prompt-field">
+      <PromptField>
         {this.props.prefix}
-        <textarea
+        <PromptInput
           ref={this.input}
           autoFocus
           rows={1}
-          className="prompt-input"
           onChange={e => this.setText(e.target.value)}
           onKeyDown={e => this.onKeyDown(e)}
           value={this.state.text}
         />
-      </div>
+      </PromptField>
     );
   }
 }
